@@ -43,6 +43,7 @@ AGCDemoCharacter::AGCDemoCharacter()
 	// Activate ticking in order to update the cursor every frame.
 	PrimaryActorTick.bCanEverTick = true;
 	PrimaryActorTick.bStartWithTickEnabled = true;
+	
 }
 
 void AGCDemoCharacter::Tick(float DeltaSeconds)

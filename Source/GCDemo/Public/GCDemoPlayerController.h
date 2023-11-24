@@ -8,6 +8,9 @@
 #include "InputActionValue.h"
 #include "GCDemoPlayerController.generated.h"
 
+class UEquipmentComponent;
+class UHotbarComponent;
+class UInventoryComponent;
 /** Forward declaration to improve compiling times */
 class UNiagaraSystem;
 
@@ -17,7 +20,17 @@ class AGCDemoPlayerController : public APlayerController
 	GENERATED_BODY()
 
 public:
+	
 	AGCDemoPlayerController();
+
+	UFUNCTION(BlueprintPure, Category = "Containers")
+	UInventoryComponent* GetInventoryComponent() const;
+
+	UFUNCTION(BlueprintPure, Category = "Containers")
+	UHotbarComponent* GetHotbarComponent() const;
+
+	UFUNCTION(BlueprintPure, Category = "Containers")
+	UEquipmentComponent* GetEquipmentComponent() const;
 
 	/** Time Threshold to know if it was a short press */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
@@ -29,7 +42,7 @@ public:
 
 	/** MappingContext */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
-	class UInputMappingContext* DefaultMappingContext;
+	TArray<class UInputMappingContext*> InputMappingContexts;
 	
 	/** Jump Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
@@ -39,7 +52,19 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	class UInputAction* SetDestinationTouchAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Containers)
+	UInventoryComponent* InventoryComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Containers)
+	UHotbarComponent* HotbarComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Containers)
+	UEquipmentComponent* EquipmentComponent;
+
 protected:
+
+	virtual void OnRep_PlayerState() override;
+	
 	/** True if the controlled character should navigate to the mouse cursor. */
 	uint32 bMoveToMouseCursor : 1;
 

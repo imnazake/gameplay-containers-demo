@@ -8,6 +8,21 @@ public class GCDemo : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay", "NavigationSystem", "AIModule", "Niagara", "EnhancedInput", "GameplayContainers" });
+        PublicDependencyModuleNames.AddRange(new string[]
+        {
+	        "Core", 
+	        "CoreUObject", 
+	        "Engine", 
+	        "InputCore", 
+	        "HeadMountedDisplay", 
+	        "NavigationSystem", 
+	        "AIModule", 
+	        "Niagara", 
+	        "EnhancedInput", 
+	        "GameplayContainers",
+	        "GameplayAbilities",
+	        "GameplayTags",
+	        "GameplayTasks",
+        });
     }
 }

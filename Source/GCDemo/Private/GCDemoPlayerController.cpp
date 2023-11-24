@@ -9,13 +9,43 @@
 #include "Engine/World.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "GCDemoPlayerState.h"
+#include "Core/Equipment/EquipmentComponent.h"
+#include "Core/Hotbar/HotbarComponent.h"
+#include "Core/Inventory/InventoryComponent.h"
 
 AGCDemoPlayerController::AGCDemoPlayerController()
 {
 	bShowMouseCursor = true;
+	
 	DefaultMouseCursor = EMouseCursor::Default;
 	CachedDestination = FVector::ZeroVector;
 	FollowTime = 0.f;
+
+	InventoryComponent = CreateDefaultSubobject<UInventoryComponent>(TEXT("InventoryComponent"));
+	InventoryComponent->SetIsReplicated(true);
+
+	HotbarComponent = CreateDefaultSubobject<UHotbarComponent>(TEXT("HotbarComponent"));
+	HotbarComponent->SetIsReplicated(true);
+	
+	EquipmentComponent = CreateDefaultSubobject<UEquipmentComponent>(TEXT("EquipmentComponent"));
+	EquipmentComponent->SetIsReplicated(true);
+	
+}
+
+UInventoryComponent* AGCDemoPlayerController::GetInventoryComponent() const
+{
+	return InventoryComponent;
+}
+
+UHotbarComponent* AGCDemoPlayerController::GetHotbarComponent() const
+{
+	return HotbarComponent;
+}
+
+UEquipmentComponent* AGCDemoPlayerController::GetEquipmentComponent() const
+{
+	return EquipmentComponent;
 }
 
 void AGCDemoPlayerController::BeginPlay()
@@ -26,7 +56,25 @@ void AGCDemoPlayerController::BeginPlay()
 	//Add Input Mapping Context
 	if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
 	{
-		Subsystem->AddMappingContext(DefaultMappingContext, 0);
+		for (const UInputMappingContext* IMC: InputMappingContexts)
+		{
+			Subsystem->AddMappingContext(IMC, 0);
+		}
+	}
+}
+
+void AGCDemoPlayerController::OnRep_PlayerState()
+{
+	Super::OnRep_PlayerState();
+
+	if (AGCDemoPlayerState* PS = GetPlayerState<AGCDemoPlayerState>())
+	{
+		if (UAbilitySystemComponent* ASC = PS->GetAbilitySystemComponent())
+		{
+			InventoryComponent->RegisterWithAbilitySystem(ASC);
+			HotbarComponent->RegisterWithAbilitySystem(ASC);
+			EquipmentComponent->RegisterWithAbilitySystem(ASC);
+		}
 	}
 }
 
