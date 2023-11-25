@@ -3,13 +3,10 @@
 #include "GCDemoPlayerController.h"
 #include "GameFramework/Pawn.h"
 #include "Blueprint/AIBlueprintHelperLibrary.h"
-#include "NiagaraSystem.h"
 #include "NiagaraFunctionLibrary.h"
-#include "GCDemoCharacter.h"
 #include "Engine/World.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
-#include "GCDemoPlayerState.h"
 #include "Core/Equipment/EquipmentComponent.h"
 #include "Core/Hotbar/HotbarComponent.h"
 #include "Core/Inventory/InventoryComponent.h"
@@ -66,16 +63,6 @@ void AGCDemoPlayerController::BeginPlay()
 void AGCDemoPlayerController::OnRep_PlayerState()
 {
 	Super::OnRep_PlayerState();
-
-	if (AGCDemoPlayerState* PS = GetPlayerState<AGCDemoPlayerState>())
-	{
-		if (UAbilitySystemComponent* ASC = PS->GetAbilitySystemComponent())
-		{
-			InventoryComponent->RegisterWithAbilitySystem(ASC);
-			HotbarComponent->RegisterWithAbilitySystem(ASC);
-			EquipmentComponent->RegisterWithAbilitySystem(ASC);
-		}
-	}
 }
 
 void AGCDemoPlayerController::SetupInputComponent()

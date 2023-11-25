@@ -1,10 +1,17 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "GCDemoCharacter.h"
+
+#include "AbilitySystemComponent.h"
+#include "GCDemoPlayerController.h"
+#include "GCDemoPlayerState.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Camera/CameraComponent.h"
 #include "Components/DecalComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Core/Equipment/EquipmentComponent.h"
+#include "Core/Hotbar/HotbarComponent.h"
+#include "Core/Inventory/InventoryComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/PlayerController.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -49,4 +56,34 @@ AGCDemoCharacter::AGCDemoCharacter()
 void AGCDemoCharacter::Tick(float DeltaSeconds)
 {
     Super::Tick(DeltaSeconds);
+}
+
+void AGCDemoCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+
+	if (AGCDemoPlayerState* PS = GetPlayerState<AGCDemoPlayerState>())
+	{
+		PS->GetAbilitySystemComponent()->InitAbilityActorInfo(PS, this);
+
+		// if (AGCDemoPlayerController* PC = Cast<AGCDemoPlayerController>(PS->GetPlayerController()))
+		// {
+		// 	if (UAbilitySystemComponent* ASC = PS->GetAbilitySystemComponent())
+		// 	{
+		// 		PC->GetInventoryComponent()->RegisterWithAbilitySystem(ASC);
+		// 		PC->GetHotbarComponent()->RegisterWithAbilitySystem(ASC);
+		// 		PC->GetEquipmentComponent()->RegisterWithAbilitySystem(ASC);
+		// 	}
+		// }
+	}
+}
+
+void AGCDemoCharacter::OnRep_PlayerState()
+{
+	Super::OnRep_PlayerState();
+
+	if (AGCDemoPlayerState* PS = GetPlayerState<AGCDemoPlayerState>())
+	{
+		PS->GetAbilitySystemComponent()->InitAbilityActorInfo(PS, this);
+	}
 }

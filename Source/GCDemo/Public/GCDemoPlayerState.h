@@ -20,6 +20,7 @@ public:
 	
 	virtual void BeginPlay() override;
 	virtual void PostInitializeComponents() override;
+	
 
 	//~ IAbilitySystemInterface
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
