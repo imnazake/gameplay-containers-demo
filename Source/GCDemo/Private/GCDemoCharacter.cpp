@@ -7,7 +7,6 @@
 #include "GCDemoPlayerState.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Camera/CameraComponent.h"
-#include "Components/DecalComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Core/Equipment/EquipmentComponent.h"
 #include "Core/Hotbar/HotbarComponent.h"
@@ -65,16 +64,16 @@ void AGCDemoCharacter::PossessedBy(AController* NewController)
 	if (AGCDemoPlayerState* PS = GetPlayerState<AGCDemoPlayerState>())
 	{
 		PS->GetAbilitySystemComponent()->InitAbilityActorInfo(PS, this);
-
-		// if (AGCDemoPlayerController* PC = Cast<AGCDemoPlayerController>(PS->GetPlayerController()))
-		// {
-		// 	if (UAbilitySystemComponent* ASC = PS->GetAbilitySystemComponent())
-		// 	{
-		// 		PC->GetInventoryComponent()->RegisterWithAbilitySystem(ASC);
-		// 		PC->GetHotbarComponent()->RegisterWithAbilitySystem(ASC);
-		// 		PC->GetEquipmentComponent()->RegisterWithAbilitySystem(ASC);
-		// 	}
-		// }
+	
+		if (AGCDemoPlayerController* PC = Cast<AGCDemoPlayerController>(PS->GetPlayerController()))
+		{
+			if (UAbilitySystemComponent* ASC = PS->GetAbilitySystemComponent())
+			{
+				PC->GetInventoryComponent()->RegisterWithAbilitySystem(ASC);
+				PC->GetHotbarComponent()->RegisterWithAbilitySystem(ASC);
+				PC->GetEquipmentComponent()->RegisterWithAbilitySystem(ASC);
+			}
+		}
 	}
 }
 
@@ -85,5 +84,16 @@ void AGCDemoCharacter::OnRep_PlayerState()
 	if (AGCDemoPlayerState* PS = GetPlayerState<AGCDemoPlayerState>())
 	{
 		PS->GetAbilitySystemComponent()->InitAbilityActorInfo(PS, this);
+		UAbilitySystemComponent* ASC = PS->GetAbilitySystemComponent();
+
+		if (const AGCDemoPlayerController* PC = Cast<AGCDemoPlayerController>(PS->GetPlayerController()))
+		{
+			if (ASC)
+			{
+				PC->GetInventoryComponent()->RegisterWithAbilitySystem(ASC);
+				PC->GetHotbarComponent()->RegisterWithAbilitySystem(ASC);
+				PC->GetEquipmentComponent()->RegisterWithAbilitySystem(ASC);
+			}
+		}
 	}
 }

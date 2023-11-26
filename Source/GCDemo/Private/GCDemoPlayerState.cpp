@@ -4,8 +4,9 @@
 #include "AbilitySystemComponent.h"
 #include "GCDemoPlayerController.h"
 #include "Core/Equipment/EquipmentComponent.h"
-#include "Core/Hotbar/HotbarComponent.h"
 #include "Core/Inventory/InventoryComponent.h"
+#include "Core/Hotbar/HotbarComponent.h"
+#include "AbilitySystemGlobals.h"
 
 AGCDemoPlayerState::AGCDemoPlayerState()
 {
@@ -30,6 +31,10 @@ void AGCDemoPlayerState::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
 
+	UAbilitySystemGlobals::Get().InitGlobalData();
+
+	AbilitySystemComponent->InitAbilityActorInfo(this, GetPawn());
+	
 	if (const AGCDemoPlayerController* PC = Cast<AGCDemoPlayerController>(GetPlayerController()))
 	{
 		if (AbilitySystemComponent)

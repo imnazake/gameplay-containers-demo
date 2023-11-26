@@ -30,6 +30,17 @@ AGCDemoPlayerController::AGCDemoPlayerController()
 	
 }
 
+TArray<UGameplayContainerComponent*> AGCDemoPlayerController::GetGameplayContainers()
+{
+	TArray<UGameplayContainerComponent*> FoundContainers;
+
+	FoundContainers.Add(EquipmentComponent);
+	FoundContainers.Add(InventoryComponent);
+	FoundContainers.Add(HotbarComponent);
+
+	return FoundContainers;
+}
+
 UInventoryComponent* AGCDemoPlayerController::GetInventoryComponent() const
 {
 	return InventoryComponent;
@@ -58,6 +69,13 @@ void AGCDemoPlayerController::BeginPlay()
 			Subsystem->AddMappingContext(IMC, 0);
 		}
 	}
+}
+
+void AGCDemoPlayerController::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+
+	EquipmentComponent->RegisterWithInventoryComponent(InventoryComponent);
 }
 
 void AGCDemoPlayerController::OnRep_PlayerState()

@@ -6,6 +6,7 @@
 #include "Templates/SubclassOf.h"
 #include "GameFramework/PlayerController.h"
 #include "InputActionValue.h"
+#include "Core/IGameplayContainerInterface.h"
 #include "GCDemoPlayerController.generated.h"
 
 class UEquipmentComponent;
@@ -15,13 +16,15 @@ class UInventoryComponent;
 class UNiagaraSystem;
 
 UCLASS()
-class AGCDemoPlayerController : public APlayerController
+class AGCDemoPlayerController : public APlayerController, public IGameplayContainerInterface
 {
 	GENERATED_BODY()
 
 public:
 	
 	AGCDemoPlayerController();
+
+	virtual TArray<UGameplayContainerComponent*> GetGameplayContainers() override;
 
 	UFUNCTION(BlueprintPure, Category = "Containers")
 	UInventoryComponent* GetInventoryComponent() const;
@@ -63,6 +66,7 @@ public:
 
 protected:
 
+	virtual void PostInitializeComponents() override;
 	virtual void OnRep_PlayerState() override;
 	
 	/** True if the controlled character should navigate to the mouse cursor. */
