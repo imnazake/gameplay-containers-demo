@@ -12,4 +12,5 @@ A demo project for implementing the gameplay containers plugin in Unreal Engine.
 + Replicated
 
 #### Preview
-# ![](/Docs/Preview.PNG)
+![](/Docs/01.PNG)
+![](/Docs/02.PNG)
