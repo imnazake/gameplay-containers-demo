@@ -2,11 +2,7 @@
 
 #include "GCDemoPlayerController.h"
 #include "GameFramework/Pawn.h"
-#include "Blueprint/AIBlueprintHelperLibrary.h"
-#include "NiagaraFunctionLibrary.h"
 #include "Engine/World.h"
-#include "EnhancedInputComponent.h"
-#include "EnhancedInputSubsystems.h"
 #include "Core/Equipment/EquipmentComponent.h"
 #include "Core/Hotbar/HotbarComponent.h"
 #include "Core/Inventory/InventoryComponent.h"
@@ -21,7 +17,6 @@ AGCDemoPlayerController::AGCDemoPlayerController()
 	
 	EquipmentComponent = CreateDefaultSubobject<UEquipmentComponent>(TEXT("EquipmentComponent"));
 	EquipmentComponent->SetIsReplicated(true);
-	
 }
 
 TArray<UGameplayContainerComponent*> AGCDemoPlayerController::GetGameplayContainers()

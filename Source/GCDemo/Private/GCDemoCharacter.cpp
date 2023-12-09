@@ -43,11 +43,6 @@ AGCDemoCharacter::AGCDemoCharacter()
 	FirstPersonCamera->SetupAttachment(HeadMesh);
 	FirstPersonCamera->bUsePawnControlRotation = true;
 	
-	GetCharacterMovement()->bOrientRotationToMovement = true; // Rotate character to moving direction
-	GetCharacterMovement()->RotationRate = FRotator(0.f, 640.f, 0.f);
-	GetCharacterMovement()->bConstrainToPlane = true;
-	GetCharacterMovement()->bSnapToPlaneAtStart = true;
-	
 	// Activate ticking in order to update the cursor every frame.
 	PrimaryActorTick.bCanEverTick = false;
 	PrimaryActorTick.bStartWithTickEnabled = false;
