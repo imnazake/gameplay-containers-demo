@@ -2,11 +2,11 @@
 
 #include "GCDemoPlayerState.h"
 #include "AbilitySystemComponent.h"
-#include "GCDemoPlayerController.h"
 #include "Core/Equipment/EquipmentComponent.h"
 #include "Core/Inventory/InventoryComponent.h"
 #include "Core/Hotbar/HotbarComponent.h"
 #include "AbilitySystemGlobals.h"
+#include "Core/IGameplayContainerInterface.h"
 
 AGCDemoPlayerState::AGCDemoPlayerState()
 {
@@ -35,14 +35,18 @@ void AGCDemoPlayerState::PostInitializeComponents()
 
 	AbilitySystemComponent->InitAbilityActorInfo(this, GetPawn());
 	
-	if (const AGCDemoPlayerController* PC = Cast<AGCDemoPlayerController>(GetPlayerController()))
+	if (const TScriptInterface<IGameplayContainerInterface> Interface = GetPlayerController())
 	{
 		if (AbilitySystemComponent)
 		{
-			PC->GetInventoryComponent()->RegisterWithAbilitySystem(AbilitySystemComponent);
-			PC->GetHotbarComponent()->RegisterWithAbilitySystem(AbilitySystemComponent);
-			PC->GetEquipmentComponent()->RegisterWithAbilitySystem(AbilitySystemComponent);
+			Interface->GetInventoryComponent()->RegisterWithAbilitySystem(AbilitySystemComponent);
+			Interface->GetHotbarComponent()->RegisterWithAbilitySystem(AbilitySystemComponent);
 		}
+	}
+
+	if (const TScriptInterface<IGameplayContainerInterface> Interface = GetPawn())
+	{
+		Interface->GetEquipmentComponent()->RegisterWithAbilitySystem(AbilitySystemComponent);
 	}
 }
 
