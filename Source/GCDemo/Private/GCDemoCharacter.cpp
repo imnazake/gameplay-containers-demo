@@ -1,7 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "GCDemoCharacter.h"
-
 #include "AbilitySystemComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
@@ -13,9 +12,7 @@
 #include "Core/Equipment/EquipmentComponent.h"
 #include "Core/Hotbar/HotbarComponent.h"
 #include "Core/Inventory/InventoryComponent.h"
-#include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/PlayerController.h"
-#include "GameFramework/SpringArmComponent.h"
 #include "Materials/Material.h"
 #include "Engine/World.h"
 
@@ -23,29 +20,21 @@ AGCDemoCharacter::AGCDemoCharacter()
 {
 	// Set size for player capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
+	
+	GetMesh()->SetupAttachment(GetCapsuleComponent());
 
-	// // Don't rotate character to camera direction
-	// bUseControllerRotationPitch = false;
-	// bUseControllerRotationYaw = false;
-	// bUseControllerRotationRoll = false;
-
-	HeadMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("HeadMesh"));
-	HeadMesh->SetupAttachment(GetMesh());
-	HeadMesh->bOwnerNoSee = true;
-
+	FirstPersonCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FirstPersonCamera"));
+	FirstPersonCamera->SetupAttachment(GetMesh(), CameraSocket);
+	FirstPersonCamera->bUsePawnControlRotation = true;
+	
+	UpperBodyMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("UpperBodyMesh"));
+	UpperBodyMesh->SetupAttachment(GetMesh());
+	
 	HandsMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("HandsMesh"));
 	HandsMesh->SetupAttachment(GetMesh());
 
 	LowerBodyMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("LowerBodyMesh"));
 	LowerBodyMesh->SetupAttachment(GetMesh());
-	
-	FirstPersonCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FirstPersonCamera"));
-	FirstPersonCamera->SetupAttachment(HeadMesh);
-	FirstPersonCamera->bUsePawnControlRotation = true;
-	
-	// Activate ticking in order to update the cursor every frame.
-	PrimaryActorTick.bCanEverTick = false;
-	PrimaryActorTick.bStartWithTickEnabled = false;
 	
 }
 
@@ -62,9 +51,24 @@ void AGCDemoCharacter::BeginPlay()
 	}
 }
 
+void AGCDemoCharacter::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+
+	if (const TScriptInterface<IGameplayContainerInterface> Interface = GetController())
+	{
+		EquipmentComponent->RegisterWithInventoryComponent(Interface->GetInventoryComponent());
+	}
+}
+
 void AGCDemoCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
+
+	if (const TScriptInterface<IGameplayContainerInterface> Interface = NewController)
+	{
+		EquipmentComponent->RegisterWithInventoryComponent(Interface->GetInventoryComponent());
+	}
 
 	if (AGCDemoPlayerState* PS = GetPlayerState<AGCDemoPlayerState>())
 	{
@@ -76,7 +80,7 @@ void AGCDemoCharacter::PossessedBy(AController* NewController)
 			{
 				PC->GetInventoryComponent()->RegisterWithAbilitySystem(ASC);
 				PC->GetHotbarComponent()->RegisterWithAbilitySystem(ASC);
-				PC->GetEquipmentComponent()->RegisterWithAbilitySystem(ASC);
+				GetEquipmentComponent()->RegisterWithAbilitySystem(ASC);
 			}
 		}
 	}
@@ -85,7 +89,7 @@ void AGCDemoCharacter::PossessedBy(AController* NewController)
 void AGCDemoCharacter::OnRep_PlayerState()
 {
 	Super::OnRep_PlayerState();
-
+	
 	if (AGCDemoPlayerState* PS = GetPlayerState<AGCDemoPlayerState>())
 	{
 		PS->GetAbilitySystemComponent()->InitAbilityActorInfo(PS, this);
@@ -97,7 +101,7 @@ void AGCDemoCharacter::OnRep_PlayerState()
 			{
 				PC->GetInventoryComponent()->RegisterWithAbilitySystem(ASC);
 				PC->GetHotbarComponent()->RegisterWithAbilitySystem(ASC);
-				PC->GetEquipmentComponent()->RegisterWithAbilitySystem(ASC);
+				GetEquipmentComponent()->RegisterWithAbilitySystem(ASC);
 			}
 		}
 	}

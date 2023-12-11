@@ -4,13 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "InputActionValue.h"
-#include "GameFramework/Character.h"
+#include "Core/TestCharacter.h"
 #include "GCDemoCharacter.generated.h"
 
 class UCameraComponent;
 
 UCLASS(Blueprintable)
-class AGCDemoCharacter : public ACharacter
+class AGCDemoCharacter : public ATestCharacter
 {
 	GENERATED_BODY()
 	
@@ -19,6 +19,9 @@ public:
 	AGCDemoCharacter();
 
 	virtual void BeginPlay() override;
+
+	virtual void PostInitializeComponents() override;
+	
 	
 	FORCEINLINE class UCameraComponent* GetFirstPersonCamera() const
 	{
@@ -40,17 +43,20 @@ protected:
 
 private:
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Camera")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Camera")
 	UCameraComponent* FirstPersonCamera;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Camera")
-	USkeletalMeshComponent* HeadMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Meshes")
+	USkeletalMeshComponent* UpperBodyMesh;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Camera")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Meshes")
 	USkeletalMeshComponent* HandsMesh;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Camera")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Meshes")
 	USkeletalMeshComponent* LowerBodyMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Sockets")
+	FName CameraSocket;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Input")
 	class UInputMappingContext* DefaultMappingContext;
