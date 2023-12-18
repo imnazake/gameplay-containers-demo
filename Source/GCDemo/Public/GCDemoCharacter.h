@@ -7,6 +7,7 @@
 #include "Core/TestCharacter.h"
 #include "GCDemoCharacter.generated.h"
 
+class USpringArmComponent;
 class UCameraComponent;
 
 UCLASS(Blueprintable)
@@ -25,7 +26,7 @@ public:
 	
 	FORCEINLINE class UCameraComponent* GetFirstPersonCamera() const
 	{
-		return FirstPersonCamera;
+		return ThirdPersonCamera;
 	}
 	
 	virtual void PossessedBy(AController* NewController) override;
@@ -42,9 +43,12 @@ protected:
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
 
 private:
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Camera")
+	USpringArmComponent* CameraBoom;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Camera")
-	UCameraComponent* FirstPersonCamera;
+	UCameraComponent* ThirdPersonCamera;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Meshes")
 	USkeletalMeshComponent* UpperBodyMesh;
