@@ -111,3 +111,4 @@ Desktop.ini
 .DS_Store
 /Binaries/
 /Intermediate/
+/Platforms/HoloLens/*
