@@ -12,4 +12,4 @@ A demo project for implementing the gameplay containers plugin with the gameplay
 + Replicated
 
 #### Preview
-# ![](/Docs/01.GIF)
+# ![](/Docs/01.gif)
