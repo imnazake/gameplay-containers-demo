@@ -1,4 +1,4 @@
-﻿// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Mohamed Labidi (Nazake). All Rights Reserved.
 
 #include "GCDemoPlayerState.h"
 #include "AbilitySystemComponent.h"

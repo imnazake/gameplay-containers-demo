@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// Copyright Mohamed Labidi (Nazake). All Rights Reserved.
 
 #include "GCDemoGameMode.h"
 #include "GCDemoPlayerController.h"
