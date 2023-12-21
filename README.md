@@ -5,20 +5,6 @@ This project showcases the features and capabilities of the Gameplay Containers 
 ##
 ![](/Docs/01.gif)
 
-## Supported Engine Versions
-
-5.0 or higher
-
-## Network Replication Support
-
-Fully Supported
-
-## Supported Platforms
-
--  Windows
--  Linux
--  Mac
-
 ## Getting Started
 
 1. Clone or download the repository.
@@ -38,6 +24,20 @@ Fully Supported
 1. Open the project in Unreal Engine.
 2. Select a demo level from the available options.
 3. Play the level and interact with the containers to observe the gameplay container features in action.
+
+## Supported Engine Versions
+
+5.0 or higher
+
+## Network Replication Support
+
+Fully Supported
+
+## Supported Platforms
+
+-  Windows
+-  Linux
+-  Mac
 
 ## Contributions
 
