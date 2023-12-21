@@ -5,6 +5,20 @@ This project showcases the features and capabilities of the Gameplay Containers 
 ##
 ![](/Docs/01.gif)
 
+## Supported Engine Versions
+
+5.0 or higher
+
+## Network Replication Support
+
+Fully Supported
+
+## Supported Platforms
+
+-  Windows
+-  Linux
+-  Mac
+
 ## Getting Started
 
 1. Clone or download the repository.
@@ -40,15 +54,3 @@ Nazake
 ## Version
 
 1.0
-
-## Supported Engine Versions
-
-5.0 or higher
-
-## Network Replication Support
-
-Fully Supported
-
-## Supported Platforms
-
-Windows, Linux, Mac
