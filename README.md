@@ -2,6 +2,8 @@
 
 This project showcases the features and capabilities of the Gameplay Containers Plugin for Unreal Engine. Use this demo as a reference to understand how to implement gameplay containers, inventory systems, and more in your own Unreal Engine projects.
 
+![](/Docs/01.gif)
+
 ## Getting Started
 
 1. Clone or download the repository.
