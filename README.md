@@ -1,16 +1,23 @@
 # Gameplay Containers Demo Project
 
-This project showcases the features and capabilities of the Gameplay Containers Plugin for Unreal Engine. Use this demo as a reference to understand how to implement gameplay containers, inventory systems, and more in your own Unreal Engine projects.
+Explore the capabilities of the Gameplay Containers Plugin with our Demo Project, a comprehensive showcase of dynamic inventory systems seamlessly integrated with Unreal Engine's Gameplay Ability System. Dive into this project to discover practical implementations, best practices, and interactive examples that demonstrate the full potential of the Gameplay Containers Plugin.
 
 ##
 ![](/Docs/01.gif)
 
+## Features
+
+- **Interactive Gameplay:** Engage with dynamic inventories, showcasing the seamless integration of the Gameplay Containers Plugin with the Gameplay Ability System.
+- **Multiplayer Interactions:** Experience how the plugin supports network replication, providing a glimpse into its suitability for both single-player and multiplayer game implementations.
+- **Customization Examples:** Delve into practical examples of customizing and extending the plugin's functionality to suit your game's unique requirements.
+- **Blueprint and C++ Demonstrations:** Gain insights into both visual scripting and coding approaches with comprehensive examples in both Blueprints and C++.
+
 ## Getting Started
 
-1. Clone or download the repository.
-2. Open the project in Unreal Engine.
-3. Explore the demo scenes and gameplay containers setup.
-4. Experiment with the demo's features and interactions.
+1. Clone or download the Gameplay Containers Demo Project repository.
+2. Ensure the Gameplay Containers Plugin is correctly installed in your Unreal Engine project.
+3. Open the project in Unreal Engine.
+4. Explore scenes, blueprints, and examples to understand how to implement dynamic inventory systems effectively.
 
 ## Features Demonstrated
 
@@ -18,12 +25,8 @@ This project showcases the features and capabilities of the Gameplay Containers 
 - **Interactive Demos:** Try out interactive demos showcasing item pickups, inventory management, and equipment changes.
 - **Notification System:** Experience real-time notifications for changes in gameplay containers.
 - **Input Handling:** See how user-friendly input actions are integrated for common container operations.
-
-## How to Run
-
-1. Open the project in Unreal Engine.
-2. Select a demo level from the available options.
-3. Play the level and interact with the containers to observe the gameplay container features in action.
+- **Single-Player Showcase:** Witness the capabilities of the Gameplay Containers Plugin in a single-player environment, showcasing inventory interactions and dynamic changes during gameplay.
+- **Multiplayer Showcase:** Experience how the plugin seamlessly extends its functionality to support network replication, providing a foundation for multiplayer game interactions.
 
 ## Supported Engine Versions
 
@@ -41,7 +44,7 @@ Fully Supported
 
 ## Contributions
 
-Contributions and feedback are welcome! Feel free to submit issues, suggestions, or contribute improvements to the demo project.
+Contributions and feedback are highly valued. If you encounter issues or have suggestions, please submit them through GitHub issues.
 
 ## License
 
