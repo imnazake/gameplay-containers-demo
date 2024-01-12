@@ -28,7 +28,7 @@ AGCDemoCharacter::AGCDemoCharacter()
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->bUsePawnControlRotation = true;
-	CameraBoom->TargetArmLength = 400.0f;
+	CameraBoom->TargetArmLength = 500.0f;
 
 	ThirdPersonCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("ThirdPersonCamera"));
 	ThirdPersonCamera->SetupAttachment(CameraBoom);
@@ -43,7 +43,9 @@ AGCDemoCharacter::AGCDemoCharacter()
 	LowerBodyMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("LowerBodyMesh"));
 	LowerBodyMesh->SetupAttachment(GetMesh());
 
-	GetCharacterMovement()->bOrientRotationToMovement = true;
+	// THIS SHIT RIGHT HERE WAS CAUSING PLAYER TO SHAKE WHEN MOVING BACKWARDS, TOOK ME A MONTH TO FIGURE IT OUT !!!
+	GetCharacterMovement()->bOrientRotationToMovement = false;
+	
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 750.0f, 0.0f);
 
 	GetCharacterMovement()->JumpZVelocity = 700.f;
