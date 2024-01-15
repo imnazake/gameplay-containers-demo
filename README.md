@@ -3,7 +3,7 @@
 Explore the capabilities of the Gameplay Containers Plugin with our Demo Project, a comprehensive showcase of dynamic inventory systems seamlessly integrated with Unreal Engine's Gameplay Ability System. Dive into this project to discover practical implementations, best practices, and interactive examples that demonstrate the full potential of the Gameplay Containers Plugin.
 
 ##
-![](https://www.youtube.com/watch?v=EeGm_1vwf84)
+[<img src="https://i.ytimg.com/vi/EeGm_1vwf84/maxresdefault.jpg" width="50%">](https://www.youtube.com/watch?v=EeGm_1vwf84 "")
 
 ## Features
 
