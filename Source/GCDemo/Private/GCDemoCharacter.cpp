@@ -45,7 +45,7 @@ AGCDemoCharacter::AGCDemoCharacter()
 	LowerBodyMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("LowerBodyMesh"));
 	LowerBodyMesh->SetupAttachment(GetMesh());
 
-	// THIS SHIT RIGHT HERE WAS CAUSING PLAYER TO SHAKE WHEN MOVING BACKWARDS, TOOK ME A MONTH TO FIGURE IT OUT !!!
+	// This shit right here was causing player to shake when moving backwards, took me a long time to figure it out !!!
 	GetCharacterMovement()->bOrientRotationToMovement = false;
 	
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 750.0f, 0.0f);
@@ -87,16 +87,11 @@ void AGCDemoCharacter::PostInitializeComponents()
 void AGCDemoCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
-
-	if (const TScriptInterface<IGameplayContainerInterface> Interface = NewController)
-	{
-		EquipmentComponent->RegisterWithInventoryComponent(Interface->GetInventoryComponent());
-	}
-
+	
 	if (AGCDemoPlayerState* PS = GetPlayerState<AGCDemoPlayerState>())
 	{
 		PS->GetAbilitySystemComponent()->InitAbilityActorInfo(PS, this);
-	
+		
 		if (AGCDemoPlayerController* PC = Cast<AGCDemoPlayerController>(PS->GetPlayerController()))
 		{
 			if (UAbilitySystemComponent* ASC = PS->GetAbilitySystemComponent())
@@ -116,11 +111,10 @@ void AGCDemoCharacter::OnRep_PlayerState()
 	if (AGCDemoPlayerState* PS = GetPlayerState<AGCDemoPlayerState>())
 	{
 		PS->GetAbilitySystemComponent()->InitAbilityActorInfo(PS, this);
-		UAbilitySystemComponent* ASC = PS->GetAbilitySystemComponent();
 
 		if (const AGCDemoPlayerController* PC = Cast<AGCDemoPlayerController>(PS->GetPlayerController()))
 		{
-			if (ASC)
+			if (UAbilitySystemComponent* ASC = PS->GetAbilitySystemComponent())
 			{
 				PC->GetInventoryComponent()->RegisterWithAbilitySystem(ASC);
 				PC->GetHotbarComponent()->RegisterWithAbilitySystem(ASC);
