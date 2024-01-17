@@ -30,7 +30,7 @@ Explore the capabilities of the Gameplay Containers Plugin with our Demo Project
 
 ## Supported Engine Versions
 
-5.0 or higher
+5.1 or higher
 
 ## Network Replication Support
 
