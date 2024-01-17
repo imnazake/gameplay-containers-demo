@@ -1,4 +1,6 @@
-// Copyright Mohamed Labidi (Nazake). All Rights Reserved.
+/**
+ * Copyright (C) 2024 Mohamed Labidi (Nazake). All Rights Reserved.
+ */
 
 #include "GCDemoCharacter.h"
 #include "AbilitySystemComponent.h"
