@@ -5,7 +5,7 @@ Explore the capabilities of the Gameplay Containers Plugin with our Demo Project
 **Get Plugin :** [Marketplace](https://www.unrealengine.com/marketplace/en-US/product/gameplay-containers)
 
 ## Preview
-[<img src="https://i.ytimg.com/vi/EeGm_1vwf84/maxresdefault.jpg" width="100%">](https://www.youtube.com/watch?v=EeGm_1vwf84 "")
+[<img src="https://i.ytimg.com/vi/EeGm_1vwf84/maxresdefault.jpg" width="100%">](https://www.youtube.com/watch?v=DboDEVyc4aQ "")
 
 ## Features
 
