@@ -1,6 +1,4 @@
-/**
- * Copyright (C) 2024 Nazake. All Rights Reserved.
- */
+// Copyright (C) 2024 Nazake. All Rights Reserved.
 
 #include "GCDemoGameMode.h"
 #include "GCDemoPlayerController.h"
