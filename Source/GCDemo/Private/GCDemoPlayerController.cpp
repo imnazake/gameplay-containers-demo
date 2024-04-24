@@ -1,6 +1,4 @@
-/**
- * Copyright (C) 2024 Nazake. All Rights Reserved.
- */
+// Copyright (C) 2024 Nazake. All Rights Reserved.
 
 #include "GCDemoPlayerController.h"
 #include "GameFramework/Pawn.h"
