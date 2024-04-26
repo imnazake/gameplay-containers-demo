@@ -5,7 +5,7 @@ Explore the capabilities of the Gameplay Containers Plugin with our Demo Project
 [Get Plugin](https://www.unrealengine.com/marketplace/en-US/product/gameplay-containers)
 
 ## Preview
-[Watch On Youtube](https://www.youtube.com/watch?v=DboDEVyc4aQ)
+[Watch On Youtube](https://www.youtube.com/watch?v=lg6XDqHCbaw)
 
 ## Features
 
