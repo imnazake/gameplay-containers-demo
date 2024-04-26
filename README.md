@@ -7,8 +7,6 @@ Explore the capabilities of the Gameplay Containers Plugin with our Demo Project
 ## Preview
 [Watch On Youtube](https://www.youtube.com/watch?v=DboDEVyc4aQ)
 
-<video src="https://github.com/imnazake/gameplay-containers-demo/assets/74614437/48ca759e-b44e-4f4e-9bc1-0e5752430f1e" width="720">
-
 ## Features
 
 - **Interactive Gameplay:** Engage with dynamic inventories, showcasing the seamless integration of the Gameplay Containers Plugin with the Gameplay Ability System.
